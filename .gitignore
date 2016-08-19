@@ -23,5 +23,8 @@ node_modules
 # Users Environment Variables
 .lock-wscript
 
+# Idea Environment
+.idea
+
 src/bower_components
 build
