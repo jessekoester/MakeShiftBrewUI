@@ -48,7 +48,7 @@ var Nav = React.createClass({
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <a className="navbar-brand" href="/">Brewfactory</a>
+            <a className="navbar-brand" href="/">MakeShift Aleworks</a>
           </div>
           <div className="navbar-collapse collapse" id="navbar-collapse-1">
             <ul className="nav navbar-nav">

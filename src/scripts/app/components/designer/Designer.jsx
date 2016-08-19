@@ -21,6 +21,7 @@ var Designer = React.createClass({
 
     return {
       name: null,
+      water: null,
       startTime: new Date(),
       phases: []
     };
@@ -38,6 +39,7 @@ var Designer = React.createClass({
     this.setState({
       name: state.brew.name,
       startTime: new Date(),
+      water: state.brew.water,
       phases: state.brew.phases.map(function (phase) {
         return {
           min: phase.min,
@@ -103,6 +105,7 @@ var Designer = React.createClass({
   onSyncBtnClicked: function () {
     this.props.context.executeAction(createBrewAction, {
       name: this.state.name,
+      water: this.state.water,
       startTime: this.state.startTime,
       phases: this.state.phases
     });
@@ -123,6 +126,17 @@ var Designer = React.createClass({
   onNameChanged: function(event) {
     this.setState({
       name: event.target.value
+    });
+  },
+
+  /**
+   * On water input has changed
+   *
+   * @param event
+   */
+  onWaterChanged: function(event) {
+    this.setState({
+      water: event.target.value
     });
   },
 
@@ -189,41 +203,41 @@ var Designer = React.createClass({
 
     if (state.phases.length) {
       phasesComponent =
-        <table className="table" ng-show="brew.phases.length">
-          <thead>
+          <table className="table" ng-show="brew.phases.length">
+            <thead>
             <tr>
               <th>Min</th>
               <th>Temp</th>
               <th></th>
             </tr>
-          </thead>
-          <tbody>
-          {state.phases.map(function (phase, key) {
-            return <tr key={key}>
-              <td>
-                <div className="input-group">
-                  <input onChange={_this.onPhaseDurationChanged.bind(_this, key)} value={phase.min}
-                    className="form-control" type="number" min="0" placeholder="min" />
-                  <span className="input-group-addon">min</span>
-                </div>
-              </td>
-              <td>
-                <div className="input-group">
-                  <input onChange={_this.onPhaseTempChanged.bind(_this, key)} value={phase.temp}
-                    className="form-control" type="number" min="0" placeholder="C&deg;" />
-                  <span className="input-group-addon">C&deg;</span>
-                </div>
-              </td>
-              <td>
-                <button onClick={_this.onPhaseRemoveBtnClick.bind(_this, phase)}
-                  className="btn btn-mini btn-danger" type="button" title="Remove">
-                Remove
-                </button>
-              </td>
-            </tr>
-          })}
-          </tbody>
-        </table>;
+            </thead>
+            <tbody>
+            {state.phases.map(function (phase, key) {
+              return <tr key={key}>
+                <td>
+                  <div className="input-group">
+                    <input onChange={_this.onPhaseDurationChanged.bind(_this, key)} value={phase.min}
+                           className="form-control" type="number" min="0" placeholder="min" />
+                    <span className="input-group-addon">min</span>
+                  </div>
+                </td>
+                <td>
+                  <div className="input-group">
+                    <input onChange={_this.onPhaseTempChanged.bind(_this, key)} value={phase.temp}
+                           className="form-control" type="number" min="0" placeholder="C&deg;" />
+                    <span className="input-group-addon">C&deg;</span>
+                  </div>
+                </td>
+                <td>
+                  <button onClick={_this.onPhaseRemoveBtnClick.bind(_this, phase)}
+                          className="btn btn-mini btn-danger" type="button" title="Remove">
+                    Remove
+                  </button>
+                </td>
+              </tr>
+            })}
+            </tbody>
+          </table>;
     }
 
     return (
@@ -250,7 +264,13 @@ var Designer = React.createClass({
                 className="form-control" size="8" name="time" placeholder="start time" />
             </div>
           </form>
-
+          <section className="panel panel-info phases">
+            <div className="panel-heading">Water</div>
+            <div className="panel-body">
+              <input onChange={_this.onWaterChanged} value={state.water} id="water" type="text" placeholder="Amount of Water in Gallons" min="0"
+                     required className="form-control" />
+              </div>
+          </section>
           <section className="panel panel-info phases">
             <div className="panel-heading">Phases</div>
             <div className="panel-body">

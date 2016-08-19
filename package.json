@@ -1,13 +1,14 @@
 {
-  "name": "brew-ui",
-  "version": "1.5.0",
-  "description": "Common User Interface for the Brewfactory projects.",
+  "name": "make-shift-brew-ui",
+  "version": "1.5.1",
+  "description": "Common User Interface for the Brewfactory projects, modified for MakeShift Aleworks",
   "authors": [
-    "Peter Marton, @slashdotpeter"
+    "Peter Marton, @slashdotpeter",
+    "Jesse Koester"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/brewfactory/BrewUI"
+    "url": "https://github.com/JesseKoester/MakeShiftBrewUI"
   },
   "keywords": [
     "Homebrew",
@@ -31,6 +32,7 @@
     "debug": "^2.0.0",
     "dispatchr": "^0.2.7",
     "flux-router-component": "^0.4.3",
+    "file-loader": "*",
     "gulp": "^3.8.8",
     "gulp-bower": "0.0.7",
     "gulp-clean": "~0.3.1",
@@ -46,6 +48,7 @@
     "gulp-uglify": "^1.0.1",
     "gulp-usemin": "^0.3.8",
     "gulp-util": "~3.0.1",
+    "jshint": "^2.5.0",
     "jshint-loader": "^0.8.0",
     "jsx-loader": "^0.12.0",
     "lodash-node": "^2.4.1",

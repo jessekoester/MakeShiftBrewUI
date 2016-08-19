@@ -29,7 +29,7 @@ var Foot = React.createClass({
   render: function () {
     return (
       <footer className="container">
-        <p className="text-center">We ♥ Beer | Brewfactory</p>
+        <p className="text-center">We Brew Shit! | MakeShift Aleworks</p>
       </footer>
     );
   }

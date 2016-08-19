@@ -18,6 +18,7 @@ var BrewConstants = require('../constants/BrewConstants');
 function BrewStore() {
   this.brew = {
     name: null,
+    water: null,
     phases: [],
     startTime: null,
     state: null,
@@ -81,6 +82,7 @@ BrewStore.prototype.rehydrate = function (state) {
 BrewStore.prototype.brewUpdated = function (brew) {
   this.brew = {
     name: brew.name,
+    water: brew.water,
     phases: brew.phases,
     startTime: brew.startTime,
     state: brew.state,

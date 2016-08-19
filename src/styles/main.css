@@ -1,6 +1,5 @@
 body {
     padding-top: 70px;
-    padding-bottom: 6px;
 }
 
 /* region sticky footer */
@@ -9,6 +8,7 @@ html,
 body, #app, #app-container {
     height: 100%;
     /* The html and body elements cannot have any padding or margin. */
+    background-color: #ffffff;
 }
 
 /* Wrapper for page content to push down footer */
@@ -19,6 +19,11 @@ body, #app, #app-container {
     margin: 0 auto -44px;
     /* Pad bottom by footer height (with padding) */
     padding: 0 0 44px;
+    background: #ffffff; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#ffffff, #b5b5b5); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#ffffff, #B5B5B5); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#ffffff, #B5B5B5); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#ffffff, #B5B5B5); /* Standard syntax */
 }
 
 footer {
@@ -33,18 +38,17 @@ footer p {
 
 
 /* region navigation */
-
 .navbar-inverse {
-    background-color: #1f80e3;
+    background-color: #000000;
     border: none;
 }
 
 .navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {
-    background-color: #1F94FC;
+    background-color: #000000;
 }
 
 .navbar-inverse .navbar-nav > li > a, .navbar-inverse .navbar-link {
-    color: #b3d9ff;
+    color: white;
 }
 
 .navbar-inverse .navbar-brand {
@@ -69,6 +73,13 @@ footer p {
 }
 
 /* end region brew phases */
+.panel {
+    border-color: #000000;
+}
+
+.panel.panel-heading {
+    background-color: #000;
+}
 
 .panel.panel-actual-brew .panel-footer {
     background-color: #fff;
@@ -78,6 +89,6 @@ footer p {
     background-color: #fff;
 }
 
-.designer .panel.panel-info.phases .panel-footer {
-    border-color: #bce8f1;
+.designer .panel.panel-info.phases .panel.panel.phases .panel-footer {
+    border-color: #000000;
 }

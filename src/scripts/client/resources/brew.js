@@ -55,6 +55,7 @@ function create(options) {
       .post(URL)
       .send({
         name: brew.name,
+        water: brew.water,
         startTime: brew.startTime,
         phases: brew.phases
       })
