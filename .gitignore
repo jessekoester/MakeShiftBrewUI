@@ -25,6 +25,10 @@ node_modules
 
 # Idea Environment
 .idea
+.DS_Store
+.idea/workspace.xml
+src/.DS_STORE
+
 
 src/bower_components
 build

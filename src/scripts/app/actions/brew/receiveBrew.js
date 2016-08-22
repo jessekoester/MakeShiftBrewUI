@@ -6,7 +6,6 @@ var BrewConstants = require('../../constants/BrewConstants');
 module.exports = function (context, payload) {
   var brew = {
     name: payload.name,
-    water: payload.water,
     phases: payload.phases,
     startTime: payload.startTime,
     paused: payload.paused

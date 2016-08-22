@@ -23,6 +23,9 @@ var BrewPhase = React.createClass({
       return sum;
     }, 0);
 
+    if(brew.phase) {
+
+    }
     var unit = (100 - brew.phases.length * (1 + 10)) / brewDuration;
 
     // No brew
@@ -35,27 +38,59 @@ var BrewPhase = React.createClass({
         {brew.phases.map(function (phase, key) {
           var phaseWidth = unit * phase.min + 10;
 
+          if(phase.type == "water") {
+            var phaseWidth = 10;
+          }
+
           var phaseStyle = {
             width: phaseWidth+ '%'
           };
+          if(phase.type == "water") {
+            var dividerClasses = cx({
+              'progress-bar': true,
+              'active progress-striped progress-bar-danger': phase.inProgress && !phase.waterReached,
+              'progress-bar-inactive2': !phase.inProgress
+            });
 
-          var dividerClasses = cx({
-            'progress-bar': true,
-            'active progress-striped progress-bar-danger': phase.inProgress && !phase.tempReached,
-            'progress-bar-inactive2': !phase.inProgress
-          });
+            var phaseClasses = cx({
+              'progress-bar': true,
+              'progress-bar-success': phase.waterReached && !phase.inProgress,
+              'progress-bar-warning': phase.inProgress && !phase.waterReached,
+              'progress-striped active': phase.inProgress && phase.waterReached,
+              'progress-bar-inactive': !phase.inProgress && !phase.waterReached
+            });
 
-          var phaseClasses = cx({
-            'progress-bar': true,
-            'progress-bar-success': phase.tempReached && !phase.inProgress,
-            'progress-bar-warning': phase.inProgress && !phase.tempReached,
-            'progress-striped active': phase.inProgress && phase.tempReached,
-            'progress-bar-inactive': !phase.inProgress && !phase.tempReached
-          });
+            var jobEndFormatted = phase.jobEnd ? moment(phase.jobEnd).format('HH:mm') : '';
 
-          var jobEndFormatted = phase.jobEnd ? moment(phase.jobEnd).format('HH:mm') : '';
+            return <span key={key}>
+                  <div className={dividerClasses} style={dividerStyle}>
+                    <span className="sr-only">wait</span>
+                  </div>
 
-          return <span key={key}>
+                  <div className={phaseClasses} style={phaseStyle}>
+                    <span>{phase.gallons} gal {jobEndFormatted}</span>
+                  </div>
+                </span>
+
+          } else if(phase.type == "brew") {
+
+            var dividerClasses = cx({
+              'progress-bar': true,
+              'active progress-striped progress-bar-danger': phase.inProgress && !phase.tempReached,
+              'progress-bar-inactive2': !phase.inProgress
+            });
+
+            var phaseClasses = cx({
+              'progress-bar': true,
+              'progress-bar-success': phase.tempReached && !phase.inProgress,
+              'progress-bar-warning': phase.inProgress && !phase.tempReached,
+              'progress-striped active': phase.inProgress && phase.tempReached,
+              'progress-bar-inactive': !phase.inProgress && !phase.tempReached
+            });
+
+            var jobEndFormatted = phase.jobEnd ? moment(phase.jobEnd).format('HH:mm') : '';
+
+            return <span key={key}>
                   <div className={dividerClasses} style={dividerStyle}>
                     <span className="sr-only">wait</span>
                   </div>
@@ -64,6 +99,7 @@ var BrewPhase = React.createClass({
                     <span>{phase.min} min, {phase.temp}&deg; {jobEndFormatted}</span>
                   </div>
                 </span>
+          }
         })}
     </div>
     );

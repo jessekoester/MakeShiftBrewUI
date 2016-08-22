@@ -21,7 +21,6 @@ var Designer = React.createClass({
 
     return {
       name: null,
-      water: null,
       startTime: new Date(),
       phases: []
     };
@@ -39,11 +38,12 @@ var Designer = React.createClass({
     this.setState({
       name: state.brew.name,
       startTime: new Date(),
-      water: state.brew.water,
       phases: state.brew.phases.map(function (phase) {
         return {
           min: phase.min,
-          temp: phase.temp
+          temp: phase.temp,
+          gallons: phase.gallons,
+          type: phase.type
         }
       })
     });
@@ -69,7 +69,9 @@ var Designer = React.createClass({
     var state = this.state;
     var phase = {
       min: null,
-      temp: null
+      temp: null,
+      gallons: null,
+      type: "brew"
     };
 
     if (isDown) {
@@ -79,6 +81,27 @@ var Designer = React.createClass({
     }
 
     this.setState(state);
+    console.log(state);
+  },
+
+  /*
+   * On phase add btn click
+   *
+   * @method onPhaseAddBtnClick
+   */
+  onWaterAddBtnClick: function (gallons) {
+    var state = this.state;
+    var phase = {
+      min: null,
+      temp: null,
+      gallons: gallons,
+      type: "water"
+    };
+
+    state.phases.unshift(phase);
+
+    this.setState(state);
+    console.log(state);
   },
 
 
@@ -105,7 +128,6 @@ var Designer = React.createClass({
   onSyncBtnClicked: function () {
     this.props.context.executeAction(createBrewAction, {
       name: this.state.name,
-      water: this.state.water,
       startTime: this.state.startTime,
       phases: this.state.phases
     });
@@ -128,18 +150,6 @@ var Designer = React.createClass({
       name: event.target.value
     });
   },
-
-  /**
-   * On water input has changed
-   *
-   * @param event
-   */
-  onWaterChanged: function(event) {
-    this.setState({
-      water: event.target.value
-    });
-  },
-
 
   /*
    * On startTime input has changed
@@ -189,6 +199,16 @@ var Designer = React.createClass({
     });
   },
 
+  onPhaseWaterChanged: function (phaseKey, event) {
+    var phases = this.state.phases;
+
+    phases[phaseKey].gallons = Number(event.target.value);
+
+    this.setState({
+      phases: phases
+    });
+  },
+
 
   /*
    * Render
@@ -206,6 +226,34 @@ var Designer = React.createClass({
           <table className="table" ng-show="brew.phases.length">
             <thead>
             <tr>
+              <th>Gallons</th>
+              <th></th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {state.phases.map(function (phase, key) {
+              if (phase.type == "water") {
+                return <tr key={key}>
+                  <td colspan="2">
+                    <div className="input-group">
+                      <input onChange={_this.onPhaseWaterChanged.bind(_this, key)} value={phase.gallons}
+                             className="form-control" type="number" min="0" placeholder="0.00" required/>
+                      <span className="input-group-addon">Gal</span>
+                    </div>
+                  </td>
+                  <td>
+                    <button onClick={_this.onPhaseRemoveBtnClick.bind(_this, phase)}
+                            className="btn btn-mini btn-danger" type="button" title="Remove">
+                      Remove
+                    </button>
+                  </td>
+                </tr>
+              }
+            })}
+            </tbody>
+            <thead>
+            <tr>
               <th>Min</th>
               <th>Temp</th>
               <th></th>
@@ -213,28 +261,30 @@ var Designer = React.createClass({
             </thead>
             <tbody>
             {state.phases.map(function (phase, key) {
-              return <tr key={key}>
-                <td>
-                  <div className="input-group">
-                    <input onChange={_this.onPhaseDurationChanged.bind(_this, key)} value={phase.min}
-                           className="form-control" type="number" min="0" placeholder="min" />
-                    <span className="input-group-addon">min</span>
-                  </div>
-                </td>
-                <td>
-                  <div className="input-group">
-                    <input onChange={_this.onPhaseTempChanged.bind(_this, key)} value={phase.temp}
-                           className="form-control" type="number" min="0" placeholder="C&deg;" />
-                    <span className="input-group-addon">C&deg;</span>
-                  </div>
-                </td>
-                <td>
-                  <button onClick={_this.onPhaseRemoveBtnClick.bind(_this, phase)}
-                          className="btn btn-mini btn-danger" type="button" title="Remove">
-                    Remove
-                  </button>
-                </td>
-              </tr>
+              if (phase.type == "brew") {
+                return <tr key={key}>
+                  <td>
+                    <div className="input-group">
+                      <input onChange={_this.onPhaseDurationChanged.bind(_this, key)} value={phase.min}
+                             className="form-control" type="number" min="0" placeholder="Min"/>
+                      <span className="input-group-addon">Min</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div className="input-group">
+                      <input onChange={_this.onPhaseTempChanged.bind(_this, key)} value={phase.temp}
+                             className="form-control" type="number" min="0" placeholder="F&deg;"/>
+                      <span className="input-group-addon">F&deg;</span>
+                    </div>
+                  </td>
+                  <td>
+                    <button onClick={_this.onPhaseRemoveBtnClick.bind(_this, phase)}
+                            className="btn btn-mini btn-danger" type="button" title="Remove">
+                      Remove
+                    </button>
+                  </td>
+                </tr>
+              }
             })}
             </tbody>
           </table>;
@@ -265,18 +315,14 @@ var Designer = React.createClass({
             </div>
           </form>
           <section className="panel panel-info phases">
-            <div className="panel-heading">Water</div>
-            <div className="panel-body">
-              <input onChange={_this.onWaterChanged} value={state.water} id="water" type="text" placeholder="Amount of Water in Gallons" min="0"
-                     required className="form-control" />
-              </div>
-          </section>
-          <section className="panel panel-info phases">
             <div className="panel-heading">Phases</div>
             <div className="panel-body">
             {state.phases.length ? phasesComponent : <i>Add new phase first.</i> }
             </div>
             <div className="panel-footer">
+              <button onClick={_this.onWaterAddBtnClick.bind(_this)}
+                      type="button" className="btn btn-default">Add Water</button>
+              &nbsp;
               <button onClick={_this.onPhaseAddBtnClick.bind(_this,  true)}
                   type="button" className="btn btn-default">Add phase down</button>
             &nbsp;

@@ -9,6 +9,9 @@ module.exports = {
     RECEIVE_BREW: null,
     CREATE_BREW: null,
     PAUSE_BREW: null,
-    STOP_BREW: null
+    STOP_BREW: null,
+
+    START_WATER: null,
+    STOP_WATER: null
   })
 };

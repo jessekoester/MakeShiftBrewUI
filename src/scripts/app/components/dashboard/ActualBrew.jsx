@@ -48,8 +48,8 @@ var ActualBrew = React.createClass({
         <table className="table table-hover">
           <thead>
             <tr>
-              <th>Min</th>
-              <th>Temp</th>
+              <th>Phase</th>
+              <th>&nbsp;</th>
               <th>End</th>
             </tr>
           </thead>
@@ -63,11 +63,20 @@ var ActualBrew = React.createClass({
 
             var jobEndFormatted = phase.jobEnd ? moment(phase.jobEnd).format('HH:mm') : '-';
 
-            return <tr className={phaseClasses} key={key}>
-              <td>{phase.min} min</td>
-              <td>{phase.temp}&deg;</td>
-              <td>{jobEndFormatted}</td>
-            </tr>
+            if(phase.type == "water"){
+              return <tr className={phaseClasses} key={key}>
+                <td>{phase.gallons} Gallons</td>
+                <td>&nbsp;</td>
+                <td>{jobEndFormatted}</td>
+              </tr>
+            }
+            if(phase.type == "brew") {
+              return <tr className={phaseClasses} key={key}>
+                <td>{phase.min} min</td>
+                <td>{phase.temp}&deg;</td>
+                <td>{jobEndFormatted}</td>
+              </tr>
+            }
           })}
           </tbody>
         </table>

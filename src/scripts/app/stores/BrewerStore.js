@@ -25,6 +25,7 @@ BrewerStore.storeName = 'BrewerStore';
 BrewerStore.handlers = {};
 BrewerStore.handlers[BrewerConstants.ActionTypes.RECEIVE_TEMPERATURE] = 'temperatureUpdated';
 BrewerStore.handlers[BrewerConstants.ActionTypes.RECEIVE_PWM] = 'pwmUpdated';
+BrewerStore.handlers[BrewerConstants.ActionTypes.RECEIVE_WATER] = 'waterUpdated';
 
 
 // Inherit ApplicationStore from the EventEmitter
@@ -89,6 +90,16 @@ BrewerStore.prototype.temperatureUpdated = function (temperature) {
  */
 BrewerStore.prototype.pwmUpdated = function (pwm) {
   this.pwm = pwm;
+
+  this.emit('change');
+};
+
+/**
+ *
+ * @param water
+ */
+BrewerStore.prototype.waterUpdated = function (water) {
+  this.water = water;
 
   this.emit('change');
 };
