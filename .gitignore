@@ -24,7 +24,7 @@ node_modules
 .lock-wscript
 
 # Idea Environment
-.idea
+.idea/
 .DS_Store
 .idea/workspace.xml
 src/.DS_STORE
@@ -32,3 +32,4 @@ src/.DS_STORE
 
 src/bower_components
 build
+/MakeShiftBrewUI.iml
