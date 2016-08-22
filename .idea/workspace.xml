@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="9de7c146-1637-4ed1-b708-53a83075f674" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MakeShiftBrewUI.iml" afterPath="$PROJECT_DIR$/MakeShiftBrewUI.iml" />
     </list>
     <ignored path="MakeShiftBrewUI.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,8 +39,8 @@
       <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="353">
-              <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+            <state relative-caret-position="308">
+              <caret line="25" column="18" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -1119,7 +1117,7 @@
       <updated>1471623724507</updated>
       <workItem from="1471623728869" duration="14006000" />
       <workItem from="1471881029070" duration="213000" />
-      <workItem from="1471881482608" duration="306000" />
+      <workItem from="1471881482608" duration="445000" />
     </task>
     <task id="LOCAL-00001" summary="Updated .gitignore">
       <created>1471623902636</created>
@@ -1132,7 +1130,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14525000" />
+    <option name="totallyTimeSpent" value="14664000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1920" y="23" width="1920" height="1146" extended-state="0" />
@@ -1371,8 +1369,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="29" column="13" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+        <state relative-caret-position="308">
+          <caret line="25" column="18" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
           <folding />
         </state>
       </provider>
