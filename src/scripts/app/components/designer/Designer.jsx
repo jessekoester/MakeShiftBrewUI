@@ -70,7 +70,6 @@ var Designer = React.createClass({
     var phase = {
       min: null,
       temp: null,
-      gallons: null,
       type: "brew"
     };
 
@@ -92,8 +91,6 @@ var Designer = React.createClass({
   onWaterAddBtnClick: function (gallons) {
     var state = this.state;
     var phase = {
-      min: null,
-      temp: null,
       gallons: gallons,
       type: "water"
     };
