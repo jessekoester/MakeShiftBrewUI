@@ -88,10 +88,9 @@ var Designer = React.createClass({
    *
    * @method onPhaseAddBtnClick
    */
-  onWaterAddBtnClick: function (gallons) {
-    var state = this.state;
+  onWaterAddBtnClick: function () {
     var phase = {
-      gallons: gallons,
+      gallons: null,
       type: "water"
     };
 

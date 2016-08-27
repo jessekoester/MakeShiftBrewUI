@@ -1,6 +1,6 @@
 {
   "name": "make-shift-brew-ui",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "Common User Interface for the Brewfactory projects, modified for MakeShift Aleworks",
   "authors": [
     "Peter Marton, @slashdotpeter",
